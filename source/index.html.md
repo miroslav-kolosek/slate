@@ -11,17 +11,17 @@ search: true
 
 # Introduction
 
-## translate.expression.ai
+## translate.content-service.org
 Service is used for text translation and caching translation. Translation Service contains a single endpoint for translation with the following parameters: text for translation, source and destination languages, an engine that will be called to translate text. Currently, supported engines are Google and Deepl. If text provided for translation is already cached it will be sent back without calling engine for translation, otherwise, the specified engine is called and translated text is returned and also cached for future calls. Authorization is done using an Access Token provided in 'Authorization' header.<br />
 Service returns a translated text with additionals data in JSON format (see Examples below).
 
 ## Base URL
 
-  https://translate.expression.ai
+  https://translate.content-service.org
 
 ## Translation endpoint (URL)
 
-  https://translate.expression.ai/process_translation
+  https://translate.content-service.org/process_translation
 
 ## HTTP Method Call
 `GET` method is used to request translation from a service.
@@ -100,7 +100,7 @@ Endpoint for testing API response from online service. Just for testing purpose.
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/ping`
+`GET https://translate.content-service.org/api/ping`
 
 #### JSON Response
 `{"data":{"message":"TUI Translations Service"}}`
@@ -111,7 +111,7 @@ Remember — access token has to be set in a `Authorization` header!
 </aside>
 
 ```shell
-curl -H 'Authorization: XXXX' https://translate.expression.ai/api/ping
+curl -H 'Authorization: XXXX' https://translate.content-service.org/api/ping
 
 # JSON Response
 {"data":{"message":"TUI Translations Service"}}
@@ -132,7 +132,7 @@ Translating text when the English language is a source language and German langu
 ```shell
 # Example 1
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=de&engine=deepl' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=de&engine=deepl' \
 --header 'Authorization: XXXX'
 
 # JSON Response
@@ -142,7 +142,7 @@ curl --request GET \
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=de&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=de&engine=deepl`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":4,"translated_chars":0,"translation":"Zehn"}}`
@@ -153,7 +153,7 @@ Translating text when the English language is a source language and French langu
 ```shell
 # Example 2
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr&engine=deepl' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr&engine=deepl' \
 --header 'Authorization: XXXX'
 
 # JSON Response
@@ -163,7 +163,7 @@ curl --request GET \
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr&engine=deepl`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":3,"translated_chars":0,"translation":"Dix"}}`
@@ -173,7 +173,7 @@ Translating long sentence when the English language is a source language and Ger
 
 ```shell
 # Example 3
-curl -G "https://translate.expression.ai/api/process_translation?source=en&target=de&engine=deepl" \
+curl -G "https://translate.content-service.org/api/process_translation?source=en&target=de&engine=deepl" \
 --data-urlencode "sentence=The accomplishment of an aim or purpose" \
 --header 'Authorization: XXXX'
 
@@ -184,7 +184,7 @@ curl -G "https://translate.expression.ai/api/process_translation?source=en&targe
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence="The accomplishment of an aim or purpose"&source=en&target=de&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence="The accomplishment of an aim or purpose"&source=en&target=de&engine=deepl`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":38,"translated_chars":0,"translation":"Die Erreichung eines Ziels oder Zwecks"}}`
@@ -195,7 +195,7 @@ Translation Service response when _'sentence'_ params is missing in URL.
 ```shell
 # Example 4
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?source=en&target=fr&engine=deepl' \
+--url 'https://translate.content-service.org/api/process_translation?source=en&target=fr&engine=deepl' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -207,7 +207,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?source=en&target=fr&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?source=en&target=fr&engine=deepl`
 
 #### JSON Response
 {"message":"Required params are missing"}
@@ -218,7 +218,7 @@ Translation Service response when _'engine'_ params is missing in URL.
 ```shell
 # Example 5
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -230,7 +230,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr`
 
 #### JSON Response
 {"message":"Required params are missing"}
@@ -241,7 +241,7 @@ Translation Service response when _'source'_ params is missing in URL.
 ```shell
 # Example 6
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&target=fr&engine=deepl' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&target=fr&engine=deepl' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -253,7 +253,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&target=fr&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&target=fr&engine=deepl`
 
 #### JSON Response
 {"message":"Required params are missing"}
@@ -264,7 +264,7 @@ Translation Service response when _'target'_ params is missing in URL.
 ```shell
 # Example 7
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&engine=deepl' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&engine=deepl' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -276,7 +276,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&engine=deepl`
 
 #### JSON Response
 {"message":"Required params are missing"}
@@ -294,7 +294,7 @@ Translating text when the English language is a source language and German langu
 ```shell
 # Example 1
 curl --request GET \
---url 'https://translate.expression.ai/process_translation?sentence=Ten&source=en&target=de&engine=google' \
+--url 'https://translate.content-service.org/process_translation?sentence=Ten&source=en&target=de&engine=google' \
 --header 'Authorization: XXXX'
 
 # JSON Response
@@ -304,7 +304,7 @@ curl --request GET \
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/process_translation?sentence=Ten&source=en&target=de&engine=google`
+`GET https://translate.content-service.org/process_translation?sentence=Ten&source=en&target=de&engine=google`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":4,"translated_chars":0,"translation":"Zehn"}}`
@@ -315,7 +315,7 @@ Translating text when the English language is a source language and French langu
 ```shell
 # Example 2
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr&engine=google' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr&engine=google' \
 --header 'Authorization: XXXX'
 
 # JSON Response
@@ -325,7 +325,7 @@ curl --request GET \
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr&engine=google`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr&engine=google`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":3,"translated_chars":0,"translation":"Dix"}}`
@@ -335,7 +335,7 @@ Translating long sentence when the English language is a source language and Ger
 
 ```shell
 # Example 3
-curl -G "https://translate.expression.ai/api/process_translation?source=en&target=de&engine=google" \
+curl -G "https://translate.content-service.org/api/process_translation?source=en&target=de&engine=google" \
 --data-urlencode "sentence=The accomplishment of an aim or purpose" \
 --header 'Authorization: XXXX'
 
@@ -346,7 +346,7 @@ curl -G "https://translate.expression.ai/api/process_translation?source=en&targe
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?source=en&target=de&engine=google`
+`GET https://translate.content-service.org/api/process_translation?source=en&target=de&engine=google`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":38,"translated_chars":0,"translation":"Die Erreichung eines Ziels oder Zwecks"}}`
@@ -357,7 +357,7 @@ Translation Service response when _'sentence'_ params is missing in URL.
 ```shell
 # Example 4
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?source=en&target=fr&engine=google' \
+--url 'https://translate.content-service.org/api/process_translation?source=en&target=fr&engine=google' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -369,7 +369,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?source=en&target=fr&engine=google`
+`GET https://translate.content-service.org/api/process_translation?source=en&target=fr&engine=google`
 
 #### JSON Response
 `{"message":"Required params are missing"}`
@@ -380,7 +380,7 @@ Translation Service response when _'engine'_ params is missing in URL.
 ```shell
 # Example 5
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -392,7 +392,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=en&target=fr`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=fr`
 
 #### JSON Response
 `{"message":"Required params are missing"}`
@@ -403,7 +403,7 @@ Translation Service response when _'source'_ params is missing in URL.
 ```shell
 # Example 7
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&target=fr&engine=google' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&target=fr&engine=google' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -415,7 +415,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&target=fr&engine=google`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&target=fr&engine=google`
 
 #### JSON Response
 `{"message":"Required params are missing"}`
@@ -426,7 +426,7 @@ Translation Service response when _'target'_ params is missing in URL.
 ```shell
 # Example 7
 curl --request GET \
---url 'https://translate.expression.ai/api/process_translation?sentence=Ten&source=fr&engine=google' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=fr&engine=google' \
 --header 'Authorization: XXXX'
 
 # Response headers
@@ -438,7 +438,7 @@ HTTP/1.1 422 Unprocessable Entity
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Ten&source=fr&engine=google`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=fr&engine=google`
 
 #### JSON Response
 `{"message":"Required params are missing"}`
@@ -450,7 +450,7 @@ Translation Service response when Access Token is not provided in '_Authorizatio
 
 ```shell
 # Token is Missing
-curl -i -H "Accept: aplication/json" 'https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl'
+curl -i -H "Accept: aplication/json" 'https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl'
 
 # Response headers
 HTTP/1.1 401 Unauthorized
@@ -460,7 +460,7 @@ HTTP/1.1 401 Unauthorized
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
 
 #### JSON Response
 `{"message":"Token is missing"}`
@@ -470,7 +470,7 @@ Translation Service response when provided Access Token is not valid.
 
 ```shell
 # Invalid Token
-curl -i -H "Accept: aplication/json" 'https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl' \
+curl -i -H "Accept: aplication/json" 'https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl' \
 --header 'Authorization: 123'
 
 # Response headers
@@ -481,7 +481,7 @@ HTTP/1.1 401 Unauthorized
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
 
 #### JSON Response
 `{"message":"Invalid token"}`
@@ -491,7 +491,7 @@ Translation Service response when internal server occurs.
 
 ```shell
 # Internal Server Error
-curl -i -H "Accept: aplication/json" 'https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl' \
+curl -i -H "Accept: aplication/json" 'https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl' \
 --header 'Authorization: 1234'
 
 # Response headers
@@ -502,7 +502,7 @@ HTTP/1.1 500 Internal server error
 
 #### HTTP Request
 
-`GET https://translate.expression.ai/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
+`GET https://translate.content-service.org/api/process_translation?sentence=Hello&source=en&target=de&engine=deepl`
 
 #### JSON Response
 `{"message": "Internal server error"}`
