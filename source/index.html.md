@@ -21,7 +21,7 @@ Service returns a translated text with additionals data in JSON format (see Exam
 
 ## Translation endpoint (URL)
 
-  https://translate.content-service.org/process_translation
+  https://translate.content-service.org/api/process_translation
 
 ## HTTP Method Call
 `GET` method is used to request translation from a service.
@@ -39,15 +39,18 @@ You must replace <code>[access_token]</code> with your personal API key.
 </aside>
 
 
-> To authorize, use this code:
+> To test authentication, you can use follwing endpoint:
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://translate.content-service.org/api/ping" \
+  -H "Authorization: XXXX"
+
+# Response
+{"data":{"message":"TUI Translations Service"}}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `XXXX` with your API key.
 
 # URL Params
 
@@ -103,7 +106,7 @@ Endpoint for testing API response from online service. Just for testing purpose.
 `GET https://translate.content-service.org/api/ping`
 
 #### JSON Response
-`{"data":{"message":"TUI Translations Service"}}`
+`{"data":{"message":"Translations Service"}}`
 
 
 <aside class="success">
@@ -114,7 +117,7 @@ Remember — access token has to be set in a `Authorization` header!
 curl -H 'Authorization: XXXX' https://translate.content-service.org/api/ping
 
 # JSON Response
-{"data":{"message":"TUI Translations Service"}}
+{"data":{"message":"Translations Service"}}
 ```
 
 > Make sure to replace `XXXX` with your API key.
@@ -294,7 +297,7 @@ Translating text when the English language is a source language and German langu
 ```shell
 # Example 1
 curl --request GET \
---url 'https://translate.content-service.org/process_translation?sentence=Ten&source=en&target=de&engine=google' \
+--url 'https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=de&engine=google' \
 --header 'Authorization: XXXX'
 
 # JSON Response
@@ -304,7 +307,7 @@ curl --request GET \
 
 #### HTTP Request
 
-`GET https://translate.content-service.org/process_translation?sentence=Ten&source=en&target=de&engine=google`
+`GET https://translate.content-service.org/api/process_translation?sentence=Ten&source=en&target=de&engine=google`
 
 #### JSON Response
 `{"data":{"cache_miss":0,"cache_hit":4,"translated_chars":0,"translation":"Zehn"}}`
