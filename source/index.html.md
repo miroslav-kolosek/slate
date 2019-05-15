@@ -506,3 +506,23 @@ HTTP/1.1 500 Internal server error
 
 #### JSON Response
 `{"message": "Internal server error"}`
+
+# FAQ
+
+<p><b>As far as I can see each request can only be done for one pair of source language – target language. Is it correct? Or could we eventually send in a single request one source language and more than one target languages? If not, are you considering it for future developments?</b>
+<p>Yes, on pair. But it is already on our feature wishlist.</p>
+
+<p><b>Since we still need access to be able to do our own tests, could you please send us a sample response? Or does it just contain the translated string?</b></p>
+<p>You can see a sample response on the right side: <a href="https://translate-documentation.content-service.org/#translate-using-deepl-engine">https://translate-documentation.content-service.org/#translate-using-deepl-engine</a></p>
+
+<p><b>What are the availability (uptime) SLOs of the service? We would need to have it online at any given time.</b></p>
+<p>Always on.</p>
+
+<p><b>How is the performance of the service? What are the mean response times?</b></p>
+<p>We are adding 20ms on top of external translation services. The response time of external services vary. If we already have that translation, its only 20ms.</p>
+
+<p><b>Using a single account, could we launch several requests in parallel? Or would we need to send them sequentially?</b></p>
+<p>You can do this parallel. Restrictions and rate limits may impact you. Don't do more than 4-6 translations in parallel.</p>
+
+<p><b>If there is any, what is the maximum size of a string to be translated? I am asking this because we currently have some descriptions for Orlando with around 10k characters.</b></p>
+<p>There is no limit. However we have a maximum processing time of 30s - if an external translation service take longer than 30s the connection is killed.</p>
